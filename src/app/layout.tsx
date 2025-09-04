@@ -26,7 +26,9 @@ export default function RootLayout({
       >
         <main className="mx-auto max-w-6xl p-4">
           <header className="mb-6 flex items-center justify-between">
-            <h1 className="text-2xl font-bold">AS Ambarès Tennis de Table</h1>
+            <h1 className="text-2xl text-[#EB212E] font-bold">
+              AS Ambarès Tennis de Table
+            </h1>
             <ChangeNameButton />
           </header>
           {children}

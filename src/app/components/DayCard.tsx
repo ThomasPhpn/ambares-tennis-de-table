@@ -68,7 +68,7 @@ export default function DayCard({ dateISO }: { dateISO: string }) {
 
   return (
     <div className="rounded-2xl p-4 border border-black bg-white">
-      <h3 className="mb-3 text-lg font-semibold">
+      <h3 className="mb-3 text-lg text-[#EB212E] font-semibold">
         <Link href={`/${dateISO}`} className="underline hover:no-underline">
           {labelFr(dateISO)}
         </Link>
@@ -96,7 +96,7 @@ export default function DayCard({ dateISO }: { dateISO: string }) {
                     : "Je viens"}
                 </button>
               </div>
-              <div className="text-sm opacity-70 text-black">
+              <div className="text-sm opacity-70 text-[#EB212E]">
                 {list.length} / 14 inscrit(s)
               </div>
               <ul className="mt-2 flex flex-wrap gap-2">

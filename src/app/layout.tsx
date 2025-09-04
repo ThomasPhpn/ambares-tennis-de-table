@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body
-        className={`bg-white text-[#EB212E] min-h-screen ${geistSans.variable} ${geistMono.variable}`}
+        className={`bg-white text-black min-h-screen ${geistSans.variable} ${geistMono.variable}`}
       >
         <main className="mx-auto max-w-6xl p-4">
           <header className="mb-6 flex items-center justify-between">

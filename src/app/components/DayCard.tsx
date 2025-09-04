@@ -17,8 +17,8 @@ type AttendanceRow = {
 type MapSlots = Record<string, string[]>;
 
 function formatHour(hhmm: string) {
-  const [h] = hhmm.split(":");
-  return `${h}h`;
+  const [h, m] = hhmm.split(":");
+  return m === "00" ? `${h}h` : `${h}h${m}`;
 }
 
 function labelFr(dateISO: string) {
@@ -58,11 +58,16 @@ export default function DayCard({ dateISO }: { dateISO: string }) {
     refresh();
   }
 
-  const endHour = (hhmm: string) =>
-    String(Number(hhmm.slice(0, 2)) + 1).padStart(2, "0") + ":00";
+  function addMinutes(hhmm: string, minutes: number) {
+    const [h, m] = hhmm.split(":").map(Number);
+    const d = new Date();
+    d.setHours(h, m, 0, 0);
+    d.setMinutes(d.getMinutes() + minutes);
+    return d.toTimeString().slice(0, 5); // "HH:MM"
+  }
 
   return (
-    <div className="rounded-2xl p-4 border border-black bg-gray-800">
+    <div className="rounded-2xl p-4 border border-black bg-white">
       <h3 className="mb-3 text-lg font-semibold">
         <Link href={`/${dateISO}`} className="underline hover:no-underline">
           {labelFr(dateISO)}
@@ -76,18 +81,23 @@ export default function DayCard({ dateISO }: { dateISO: string }) {
             <div key={slot} className="rounded-xl border border-black p-3">
               <div className="mb-2 flex items-center justify-between">
                 <span className="font-medium">
-                  {formatHour(slot)} - {formatHour(endHour(slot))}
+                  {formatHour(slot)} - {formatHour(addMinutes(slot, 90))}
                 </span>
 
                 <button
                   onClick={() => toggle(slot)}
-                  className="text-sm rounded-full px-3 py-1 bg-[#EB212E] text-white border border-black hover:bg-[#f24b55]"
+                  disabled={!imIn && list.length >= 14}
+                  className="text-sm rounded-full px-3 py-1 bg-white text-black border border-black hover:bg-[#f24b55] disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {imIn ? "Me désinscrire" : "Je viens"}
+                  {imIn
+                    ? "Me désinscrire"
+                    : list.length >= 14
+                    ? "Complet"
+                    : "Je viens"}
                 </button>
               </div>
-              <div className="text-sm opacity-70 text-white">
-                {list.length} inscrit(s)
+              <div className="text-sm opacity-70 text-black">
+                {list.length} / 14 inscrit(s)
               </div>
               <ul className="mt-2 flex flex-wrap gap-2">
                 {list.map((n) => (

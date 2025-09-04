@@ -24,7 +24,7 @@ export default function DayPage() {
         </h1>
         <Link
           href="/"
-          className="rounded-full px-3 py-1 bg-[#EB212E] text-white border border-black hover:bg-[#f24b55]"
+          className="rounded-full px-3 py-1 bg-white text-black border border-black hover:bg-[#f24b55]"
         >
           ← Retour au calendrier
         </Link>

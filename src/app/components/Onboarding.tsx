@@ -30,7 +30,7 @@ export default function Onboarding({ onReady }: { onReady: () => void }) {
         </p>
         <button
           onClick={save}
-          className="w-full rounded-full px-4 py-2 bg-[#EB212E] text-white border border-black hover:bg-[#f24b55]"
+          className="w-full rounded-full px-4 py-2 bg-white text-black border border-black hover:bg-[#f24b55]"
         >
           C’est parti
         </button>

@@ -14,6 +14,27 @@ export async function addAttendance(
   name: string
 ) {
   const slot = `${slotHHmm}:00`;
+
+  const dayOfWeek = new Date(date).getDay();
+  // 0 = dimanche, 6 = samedi
+  if (dayOfWeek === 0 || dayOfWeek === 6) {
+    return { error: "Les inscriptions sont limitées au lundi–vendredi" };
+  }
+
+  // Vérifier combien d'inscrits déjà pour ce créneau
+  const { data: existing, error } = await sb
+    .from("attendances")
+    .select("name", { count: "exact" })
+    .eq("date", date)
+    .eq("slot", slot);
+
+  if (error) return { error };
+
+  if (existing && existing.length >= 14) {
+    return { error: "Ce créneau est déjà complet (14 max)" };
+  }
+
+  // Sinon on inscrit
   return sb
     .from("attendances")
     .upsert(

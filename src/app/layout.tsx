@@ -25,12 +25,15 @@ export default function RootLayout({
         className={`bg-white text-black min-h-screen ${geistSans.variable} ${geistMono.variable}`}
       >
         <main className="mx-auto max-w-6xl p-4">
-          <header className="mb-6 flex items-center justify-between">
-            <h1 className="text-2xl text-[#EB212E] font-bold">
+          <header className="mb-6 text-center">
+            <h1 className="text-2xl font-bold text-[#EB212E]">
               AS Ambarès Tennis de Table
             </h1>
-            <ChangeNameButton />
+            <div className="mt-2">
+              <ChangeNameButton />
+            </div>
           </header>
+
           {children}
         </main>
       </body>

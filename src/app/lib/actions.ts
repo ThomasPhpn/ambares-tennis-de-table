@@ -15,12 +15,6 @@ export async function addAttendance(
 ) {
   const slot = `${slotHHmm}:00`;
 
-  const dayOfWeek = new Date(date).getDay();
-  // 0 = dimanche, 6 = samedi
-  if (dayOfWeek === 0 || dayOfWeek === 6) {
-    return { error: "Les inscriptions sont limitées au lundi–vendredi" };
-  }
-
   // Vérifier combien d'inscrits déjà pour ce créneau
   const { data: existing, error } = await sb
     .from("attendances")

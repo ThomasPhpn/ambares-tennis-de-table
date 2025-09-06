@@ -107,8 +107,8 @@ export default function DayCard({ dateISO }: { dateISO: string }) {
                 </button>
               </div>
               <div className="text-sm opacity-70 text-[#EB212E]">
+                {label && <div className="font-semibold mb-1">{label}</div>}
                 {list.length} / {cap} inscrit(s)
-                {label && <span className="ml-2 font-semibold">{label}</span>}
               </div>
               <ul className="mt-2 flex flex-wrap gap-2">
                 {list.map((n) => (

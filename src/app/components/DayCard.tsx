@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
-import { SLOTS_BY_DAY } from "../lib/slots";
+import { SLOTS_BY_DAY, SlotDef } from "../lib/slots";
 import {
   listAttendance,
   addAttendance,
@@ -45,7 +45,7 @@ export default function DayCard({ dateISO }: { dateISO: string }) {
       .toLocaleDateString("en-US", { weekday: "long" })
       .toLowerCase();
 
-    const slots = SLOTS_BY_DAY[day as keyof typeof SLOTS_BY_DAY] || [];
+    const slots: SlotDef[] = SLOTS_BY_DAY[day] || [];
     const map: MapSlots = Object.fromEntries(slots.map((s) => [s.start, []]));
 
     for (const row of (data ?? []) as AttendanceRow[]) {
@@ -72,7 +72,7 @@ export default function DayCard({ dateISO }: { dateISO: string }) {
   const day = new Date(dateISO)
     .toLocaleDateString("en-US", { weekday: "long" })
     .toLowerCase();
-  const slots = SLOTS_BY_DAY[day as keyof typeof SLOTS_BY_DAY] || [];
+  const slots: SlotDef[] = SLOTS_BY_DAY[day] || [];
 
   return (
     <div className="rounded-2xl p-4 border border-black bg-white">

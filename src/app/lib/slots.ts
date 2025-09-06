@@ -1,4 +1,13 @@
-export const SLOTS_BY_DAY = {
+// Type d'un créneau
+export type SlotDef = {
+  start: string;
+  end: string;
+  label?: string;
+  capacity?: number;
+};
+
+// Créneaux par jour
+export const SLOTS_BY_DAY: Record<string, SlotDef[]> = {
   monday: [
     { start: "17:00", end: "18:15", label: "Entraînement jeunes" },
     { start: "18:15", end: "19:30", label: "Entraînement jeunes" },
@@ -30,4 +39,4 @@ export const SLOTS_BY_DAY = {
     { start: "14:00", end: "16:00" },
     { start: "16:00", end: "18:00" },
   ],
-} as const;
+};

@@ -21,7 +21,12 @@ export const SLOTS_BY_DAY: Record<string, SlotDef[]> = {
     { start: "21:00", end: "22:00" },
   ],
   wednesday: [
-    { start: "14:15", end: "16:00", label: "Entraînement jeunes" },
+    {
+      start: "14:15",
+      end: "16:00",
+      capacity: 28,
+      label: "Entraînement jeunes",
+    },
     { start: "16:00", end: "17:30" },
     { start: "17:30", end: "19:00" },
     { start: "19:00", end: "20:30" },

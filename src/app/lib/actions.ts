@@ -15,20 +15,7 @@ export async function addAttendance(
 ) {
   const slot = `${slotHHmm}:00`;
 
-  // Vérifier combien d'inscrits déjà pour ce créneau
-  const { data: existing, error } = await sb
-    .from("attendances")
-    .select("name", { count: "exact" })
-    .eq("date", date)
-    .eq("slot", slot);
-
-  if (error) return { error };
-
-  if (existing && existing.length >= 12) {
-    return { error: "Ce créneau est déjà complet (12 max)" };
-  }
-
-  // Sinon on inscrit
+  // ✅ plus de limite côté serveur (géré dans DayCard avec slots.ts)
   return sb
     .from("attendances")
     .upsert(

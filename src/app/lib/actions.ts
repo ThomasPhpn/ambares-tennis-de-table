@@ -24,8 +24,8 @@ export async function addAttendance(
 
   if (error) return { error };
 
-  if (existing && existing.length >= 14) {
-    return { error: "Ce créneau est déjà complet (14 max)" };
+  if (existing && existing.length >= 12) {
+    return { error: "Ce créneau est déjà complet (12 max)" };
   }
 
   // Sinon on inscrit
